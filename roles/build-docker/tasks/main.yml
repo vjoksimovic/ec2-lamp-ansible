@@ -4,6 +4,7 @@
     shell: "sudo docker pull 372462118821.dkr.ecr.eu-central-1.amazonaws.com/crud-php:latest"
 
   - name: 3.1 - Run Docker image
-    command:
-            - IMAGE = docker images  --format "{{.ID}}"
-            - sudo docker run -d -p 8080:80 $IMAGE
+    shell: 'IMAGE = docker images  --format "{{.ID}}"'
+
+  - name: 3.2 - Run Docker image2
+    shell: "sudo docker run -d -p 8080:80 $IMAGE"
