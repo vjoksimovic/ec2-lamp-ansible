@@ -1,0 +1,9 @@
+---
+#Tasks file to connect to ECR
+- name: 2.0 - Install AWS CLI
+
+
+- name: 3.0 - Get login to AWS
+
+
+- name: 4.0 - Login to AWS

@@ -1,0 +1,6 @@
+---
+- hosts: ec2-webservers
+  roles:
+    - {role: install-docker}
+    - {role: aws-connect}
+    - {role: build-docker}

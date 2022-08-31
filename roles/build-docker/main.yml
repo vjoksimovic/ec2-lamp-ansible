@@ -1,0 +1,6 @@
+---
+#Tasks file to build pulled Docker image
+- name: 5.0 - Pull Docker image
+
+
+- name: 6.0 - Run Docker image

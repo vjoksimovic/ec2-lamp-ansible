@@ -1,0 +1,3 @@
+---
+#Tasks file to install Docker
+- name: 1.0 - Install Docker
