@@ -1,9 +1,27 @@
 ---
 #Tasks file to connect to ECR
-- name: 2.0 - Install AWS CLI
+tasks:
+  - name: 2.0 - Install package dependencies.
+    package: name={{ item }} state=present
+    with_items:
+      - python
+      - unzip
 
+  - name: 2.1 - Download the awscli bundle.
+    get_url: url=https://s3.amazonaws.com/aws-cli/awscli-bundle.zip dest=/tmp/awscli-bundle.zip
+    register: aws_cli_download_bundle
 
-- name: 3.0 - Get login to AWS
+  - name: 2.2 - Unarchive the installer.
+    unarchive: src=/tmp/awscli-bundle.zip dest=/tmp copy=no creates=/tmp/awscli-bundle
+    when: aws_cli_download_bundle.changed
+    register: aws_cli_unarchive_installer
 
+  - name: 2.3 - Install awscli package.
+    shell: python /tmp/awscli-bundle/install -i /usr/local/aws -b /usr/bin/aws
+    args:
+      creates: /usr/bin/aws
+    when: aws_cli_unarchive_installer.changed
 
-- name: 4.0 - Login to AWS
+  - name: 2.4 - Get login to AWS
+    ansible.builtin.shell: "aws ecr get-login-password --region eu-central-1 --no-include-email | docker login --username AWS --password-stdin 372462118821.dkr.ecr.eu-central-1.amazonaws.com/crud-php:latest"
+    when: aws_ecr_login_repository is not none and aws_ecr_login_repository != ''
