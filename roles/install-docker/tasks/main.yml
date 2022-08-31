@@ -1,6 +1,5 @@
 ---
 #Tasks file to install Docker
-  tasks:
     - name: 1.0 - Install aptitude using apt
       apt: name=aptitude state=latest update_cache=yes force_apt_get=yes
 

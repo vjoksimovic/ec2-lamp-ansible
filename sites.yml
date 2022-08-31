@@ -1,6 +1,7 @@
 ---
 - hosts: webservers
+  become: true
   roles:
-    - {role: install-docker}
-    - {role: aws-connect}
-    - {role: build-docker}
+    - install-docker
+    - aws-connect
+    - build-docker

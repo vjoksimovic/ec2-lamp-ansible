@@ -1,6 +1,5 @@
 ---
 #Tasks file to connect to ECR
-tasks:
   - name: 2.0 - Install package dependencies.
     package: name={{ item }} state=present
     with_items:

@@ -1,6 +1,5 @@
 ---
 #Tasks file to build pulled Docker image
-tasks:
   - name: 3.0 - Pull and build Docker image from ECR
     shell: "sudo docker pull 372462118821.dkr.ecr.eu-central-1.amazonaws.com/crud-php:latest"
 
