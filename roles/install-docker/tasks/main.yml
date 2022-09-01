@@ -20,6 +20,6 @@
     - name: 1.4 - Update apt and install docker-ce
       apt: update_cache=yes name=docker-ce state=latest
 
-    - name: 1.5 - Install Docker Module for Python
-      pip:
-        name: docker
+#    - name: 1.5 - Install Docker Module for Python
+ #     pip:
+   #     name: docker

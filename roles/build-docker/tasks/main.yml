@@ -1,10 +1,10 @@
 ---
 #Tasks file to build pulled Docker image
-  - name: 3.0 - Pull and build Docker image from ECR
+  - name: 3.0 - Pull Docker image from ECR
     shell: "sudo docker pull 372462118821.dkr.ecr.eu-central-1.amazonaws.com/crud-php:latest"
 
-  - name: 3.1 - Run Docker image
-    shell: 'IMAGE = docker images  --format "{{.ID}}"'
+ # - name: 3.1 - Get Docker image ID
+ #   shell: IMAGE = docker images --format \{\{.ID\}\}
 
-  - name: 3.2 - Run Docker image2
-    shell: "sudo docker run -d -p 8080:80 $IMAGE"
+  - name: 3.1 - Run Docker image
+    shell: sudo docker run -d -p 8080:80 $(docker images --format \{\{.ID\}\})
