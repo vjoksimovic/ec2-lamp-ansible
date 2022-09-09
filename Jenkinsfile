@@ -1,13 +1,12 @@
 pipeline {
 	agent any
 	stages {
-		stage('Pull Ansible repository') {
-                        steps {
-                            script {
-                                git 'https://github.com/vjoksimovic/ec2-lamp-ansible.git'
-                            }
-                        }
-                    }
+		stage('Checkout') {
+                    steps {
+                    checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/vjoksimovic/ec2-lamp-ansible']]])
+
+                  }
+                }
 
             stage('Start application with Ansible') {
                         steps {
