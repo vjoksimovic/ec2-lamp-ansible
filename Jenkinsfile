@@ -1,16 +1,17 @@
 pipeline {
 	agent any
 	stages {
-                stage('Pull ansible prerequisites'){
-                    steps{
-                        git branch: 'main', credentialsId: 'ecr:eu-central-1:aws-credentials', url: 'https://github.com/ilekicgrid/Ansible-for-jenkins.git'
-                    }
+		stage('Checkout') {
+                    steps {
+                    checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/vjoksimovic/jenkins-tf-lamp']]])
+
+                  }
                 }
 
             stage('Start application with Ansible') {
                         steps {
                             script {
-                                ansiblePlaybook credentialsId: 'ansible-jenkins', disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts.yml', playbook: 'main.yml'
+                                ansiblePlaybook credentialsId: 'ansible-jenkins', disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts.yml', playbook: 'sites.yml'
                             }
                         }
                     }
